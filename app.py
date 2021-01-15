@@ -32,15 +32,20 @@
 #         print(dataList)
 #         return make_response("ACK")
 
-from flask import Flask
+from flask import Flask, render_template, request
 from flask_pymongo import PyMongo
 
 app=Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/database"
 
-# HELLO, I DID THIS PART
+# HELLO, I DID THIS PART (MARTIN)
 
 mongo = PyMongo(app)
+
+@app.route("/", methods=['GET', 'POST'])
+def home():
+    if request.method == "GET":
+        return render_template("app.html") 
 
 
 if __name__ == "__main__":
