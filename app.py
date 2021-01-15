@@ -42,6 +42,8 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/database"
 
 mongo = PyMongo(app)
 
+#hello world
+
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == "GET":
