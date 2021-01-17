@@ -28,17 +28,58 @@
 
 <body>
     <div class="jumbotron">
-        <h1 class="text-center text-white">Welcome to Data Visualization </h1>
+        <h1 class="text-center text-white">Create Profile </h1>
     </div>
-    <br>
-    <br>
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
         <div class="row">
             <div class="col-5 jumbotron p-2 mx-1">
                 <h1 class="sensor1"> Sensor : </h1>
             </div>
             <br>
         </div>
+    </div> -->
+    <div class="form">
+        <form action = "/success_user" method = "post" enctype="multipart/form-data">
+            Semester <br>
+            <label for = "all_s">all </label>
+            <input type ="checkbox" id="all_s" name="all_s"/>
+            <label for = "s1">1 </label>
+            <input type ="checkbox" id="s1" name="s1"/>
+            <label for = "s2">2 </label>
+            <input type ="checkbox" id="s2" name="s2"/>
+            <label for = "s3">3 </label>
+            <input type ="checkbox" id="s3" name="s3"/>
+            <label for = "s4">4 </label>
+            <input type ="checkbox" id="s4" name="s4"/>
+            <label for = "s5">5 </label>
+            <input type ="checkbox" id="s5" name="s5"/>
+            <label for = "s6">6 </label>
+            <input type ="checkbox" id="s6" name="s6"/><br>
+
+            Program <br>
+            <label for = "all_p">all </label>
+            <input type ="checkbox" id="all_p" name="all_p"/>
+            <label for = "bachelor">Bachelor </label>
+            <input type ="checkbox" id="bachelor" name="bachelor"/>
+            <label for = "master">Master </label>
+            <input type ="checkbox" id="master" name="master"/><br>
+
+            <label for = "courses">Courses </label>
+            <input type ="text" id="courses" name="courses"/><br><br>
+
+            <label for = "study_program">Study Program </label>
+            <select id= "study_program">
+                <option value="1">Uno</option>
+                <option value="2">Dos</option>
+                <option value="3">Tres</option>
+                <option value="4">Cuatro</option>
+            </select><br>
+
+            <label for = "interest">Interest </label>
+            <input type ="text" id="interest" name="interest"/><br><br><br>
+
+            <input type = "submit" value="Create User">
+        </form>
     </div>
     <style>
 
@@ -49,6 +90,10 @@
         }
 
         .row{                      
+            justify-content: center;
+        }
+
+        .form{
             justify-content: center;
         }
 
