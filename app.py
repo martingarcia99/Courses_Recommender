@@ -33,21 +33,34 @@
 #         return make_response("ACK")
 
 from flask import Flask, render_template, request
-from flask_pymongo import PyMongo
+import pymongo
+from pymongo import MongoClient
+import json
+from bson import json_util
 
 app=Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/database"
 
-# HELLO, I DID THIS PART (MARTIN)
-
-mongo = PyMongo(app)
-
-#hello world 2021
+client = MongoClient('mongodb+srv://martin:xu6wqoAm@cluster0.ehkpp.mongodb.net/courses?retryWrites=true&w=majority')
+db = client.courses
+collection = db.subjects
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == "GET":
         return render_template("app.html") 
+
+@app.route("/users", methods=['POST'])
+def create_user():
+
+    course = {"name":"Learning Analytics", "description":"ahksjdlfhaklsjdhfklsadhfksladf"}
+    dbResponse = collection.insert_one(course)
+    for attr in dir(dbResponse):
+        print(attr)
+
+@app.route("/show", methods=['GET'])
+def get_course():
+    all_courses = list(collection.find({}))
+    return json.dumps(all_courses, default=json_util.default)
 
 
 if __name__ == "__main__":
