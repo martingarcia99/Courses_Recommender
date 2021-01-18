@@ -26,10 +26,11 @@
     <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
 </head>
 
-<body>
-    <div class="jumbotron">
-        <h1 class="text-center text-white">Create Profile </h1>
+<body background="static/images/course2.jpg">
+    <div class="box">
+        <h1 class="title">Create Profile </h1>  
     </div>
+    
     <!-- <div class="container-fluid">
         <div class="row">
             <div class="col-5 jumbotron p-2 mx-1">
@@ -38,55 +39,68 @@
             <br>
         </div>
     </div> -->
-    <div class="form">
-        <form action = "/success_user" method = "post" enctype="multipart/form-data">
-            Semester <br>
-            <label for = "all_s">all </label>
-            <input type ="checkbox" id="all_s" name="all_s"/>
-            <label for = "s1">1 </label>
-            <input type ="checkbox" id="s1" name="s1"/>
-            <label for = "s2">2 </label>
-            <input type ="checkbox" id="s2" name="s2"/>
-            <label for = "s3">3 </label>
-            <input type ="checkbox" id="s3" name="s3"/>
-            <label for = "s4">4 </label>
-            <input type ="checkbox" id="s4" name="s4"/>
-            <label for = "s5">5 </label>
-            <input type ="checkbox" id="s5" name="s5"/>
-            <label for = "s6">6 </label>
-            <input type ="checkbox" id="s6" name="s6"/><br>
+    <div>
+        <form action = "/success_user" method = "post" enctype="multipart/form-data" class="form">
+            <div class = "contenido">
+                Semester <br>
+                <label for = "all_s">all </label>
+                <input type ="checkbox" id="all_s" name="all_s"/>
+                <label for = "s1">1 </label>
+                <input type ="checkbox" id="s1" name="s1"/>
+                <label for = "s2">2 </label>
+                <input type ="checkbox" id="s2" name="s2"/>
+                <label for = "s3">3 </label>
+                <input type ="checkbox" id="s3" name="s3"/>
+                <label for = "s4">4 </label>
+                <input type ="checkbox" id="s4" name="s4"/>
+                <label for = "s5">5 </label>
+                <input type ="checkbox" id="s5" name="s5"/>
+                <label for = "s6">6 </label>
+                <input type ="checkbox" id="s6" name="s6"/><br>
 
-            Program <br>
-            <label for = "all_p">all </label>
-            <input type ="checkbox" id="all_p" name="all_p"/>
-            <label for = "bachelor">Bachelor </label>
-            <input type ="checkbox" id="bachelor" name="bachelor"/>
-            <label for = "master">Master </label>
-            <input type ="checkbox" id="master" name="master"/><br>
+                Program <br>
+                <label for = "all_p">all </label>
+                <input type ="checkbox" id="all_p" name="all_p"/>
+                <label for = "bachelor">Bachelor </label>
+                <input type ="checkbox" id="bachelor" name="bachelor"/>
+                <label for = "master">Master </label>
+                <input type ="checkbox" id="master" name="master"/><br>
 
-            <label for = "courses">Courses </label>
-            <input type ="text" id="courses" name="courses"/><br><br>
+                <label for = "courses">Courses </label>
+                <input type ="text" id="courses" name="courses"/><br><br>
 
-            <label for = "study_program">Study Program </label>
-            <select id= "study_program">
-                <option value="1">Uno</option>
-                <option value="2">Dos</option>
-                <option value="3">Tres</option>
-                <option value="4">Cuatro</option>
-            </select><br>
+                <label for = "study_program">Study Program </label>
+                <select id= "study_program">
+                    <option value="1">Uno</option>
+                    <option value="2">Dos</option>
+                    <option value="3">Tres</option>
+                    <option value="4">Cuatro</option>
+                </select><br>
 
-            <label for = "interest">Interest </label>
-            <input type ="text" id="interest" name="interest"/><br><br><br>
+                <label for = "interest">Interest </label>
+                <input type ="text" id="interest" name="interest"/><br><br><br>
+            </div>
 
-            <input type = "submit" value="Create User">
         </form>
+        <br>
+        <input type = "submit" value="Create User" class="button">
     </div>
     <style>
-
-        .jumbotron{
-            widows: 150px;
-            height: 220px;
+        /* .jumbotron{
+            widows: 100px;
+            height: 150px;
             justify-content: center;
+        } */
+
+        .title{
+            color: black;
+            margin-left: 840px;
+        }
+
+        .box{
+            margin-top: 100px;
+            background-color: cornsilk;
+            padding: 10px;
         }
 
         .row{                      
@@ -95,30 +109,42 @@
 
         .form{
             justify-content: center;
+            margin-left: 750px;
+            background-color: cornsilk;
+            margin-right: 750px;
+            padding: 20px;
+            margin-top: 100px;
+        }
+
+        .contenido{
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+
+        .button{
+            margin-left: 900px;
         }
 
     </style>
 
-    <div class="container-fluid">
-        <!-- Example row of columns -->
+    <!-- <div class="container-fluid">
         <div class="row">
             <div class="container-fluid" id="data-temperature">
 
             </div>
         </div>
     </div>
-<br>
-<br>
-<br>
-<div class="container-fluid">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="container-fluid" id="data-humidity">
+    <br>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container-fluid" id="data-humidity">
 
+            </div>
         </div>
-    </div>
-</div>
-<script>
+    </div> -->
+<!-- <script>
     let chartData;
 
     function requestData()
@@ -188,9 +214,9 @@
         });
         // --------------Chart 1 Ends - -----------------
     });
-</script>
+</script> -->
 
-<script>
+<!-- <script>
     class Image{
 
         constructor(imgUrl, size)
@@ -232,6 +258,6 @@
     var obj = new Image(imgUrl, size);
     obj.backgroundImage();
     obj.centerTitle();
-    </script>
+    </script> -->
 </body>
 </html>

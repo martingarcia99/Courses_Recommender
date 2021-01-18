@@ -49,6 +49,11 @@ def home():
     if request.method == "GET":
         return render_template("app.html") 
 
+@app.route("/success_user", methods=['POST'])
+def show_data():
+    if request.method == "POST":
+        
+
 @app.route("/users", methods=['POST'])
 def create_user():
 
