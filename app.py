@@ -47,11 +47,19 @@ collection = db.subjects
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == "GET":
-        return render_template("app.html") 
+        return render_template("index.html") 
 
-@app.route("/success_user", methods=['POST'])
-def show_data():
-    if request.method == "POST":
+@app.route("/app", methods=['GET', 'POST'])
+def perfil():
+    if request.method == "GET":
+        return render_template("app.html")
+    
+    # if request.method == "POST":
+
+
+# @app.route("/success_user", methods=['POST'])
+# def show_data():
+#     if request.method == "POST":
         
 
 @app.route("/users", methods=['POST'])
