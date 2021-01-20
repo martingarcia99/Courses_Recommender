@@ -4,7 +4,7 @@
 
 # app=Flask(__name__)
 
-# global dataList
+# dataList
 # dataList = []
 
 
@@ -37,12 +37,19 @@ import pymongo
 from pymongo import MongoClient
 import json
 from bson import json_util
+from flask_pymongo import PyMongo
+import numpy as np
 
 app=Flask(__name__)
+#app.config['MONGO_URI'] = 'mongodb+srv://martin:xu6wqoAm@cluster0.ehkpp.mongodb.net/LA?retryWrites=true&w=majority'
 
-client = MongoClient('mongodb+srv://martin:xu6wqoAm@cluster0.ehkpp.mongodb.net/courses?retryWrites=true&w=majority')
-db = client.courses
-collection = db.subjects
+#mongo = PyMongo(app)
+
+client = MongoClient("mongodb+srv://martin:xu6wqoAm@cluster0.ehkpp.mongodb.net/LA?retryWrites=true&w=majority")
+
+client = MongoClient("mongodb+srv://martin:xu6wqoAm@cluster0.ehkpp.mongodb.net/LA?retryWrites=true&w=majority")
+db = client.get_database("LA")
+user = db.profiles
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -57,22 +64,48 @@ def perfil():
     # if request.method == "POST":
 
 
-# @app.route("/success_user", methods=['POST'])
-# def show_data():
-#     if request.method == "POST":
+@app.route("/success_user", methods=['POST'])
+def add_data():
+    if request.method == "POST":
+        semester = request.form['semester']
+        degree = request.form['degree']
+        language = request.form['language']
+        courses = request.form['courses']
+        sp = request.form['study_program']
+        interest = request.form['interest']
+        print(semester)
+        print(degree)
+        print(language)
+        print(courses)
+        print(sp)
+        print(interest)
+
+        # user.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interest})
+        return render_template("index.html") 
+
+courses = np.array([])
+
+@app.route("/add_course", methods=['POST'])
+def add_course():
+    if request.method == "POST":
+        np.append(courses,request.form['courses'])
+        for i in courses:
+            print(i)
+        return render_template("app.html")
+
         
 
-@app.route("/users", methods=['POST'])
-def create_user():
+# @app.route("/users", methods=['POST'])
+# def create_user():
 
-    course = {"name":"Learning Analytics", "description":"ahksjdlfhaklsjdhfklsadhfksladf"}
-    dbResponse = collection.insert_one(course)
-    for attr in dir(dbResponse):
-        print(attr)
+    # user = {"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interes}
+    # dbResponse = user.insert_one(course)
+    # for attr in dir(dbResponse):
+    #     print(attr)
 
 @app.route("/show", methods=['GET'])
 def get_course():
-    all_courses = list(collection.find({}))
+    all_courses = list(user.find({}))
     return json.dumps(all_courses, default=json_util.default)
 
 

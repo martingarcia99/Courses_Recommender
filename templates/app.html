@@ -5,7 +5,6 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Visualization</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;500&display=swap" rel="stylesheet">
@@ -29,7 +28,7 @@
     <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
 </head>
 
-<body background="static/images/course2.jpg">
+<body background="static/images/formulario.png">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img src="static/images/logo.png" class="logo">
@@ -39,132 +38,117 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" href="app">Create User</a>
+              <a class="nav-link" href="/">Home</a>
             </li>
           </ul>
         </div>
       </nav>
-
-    <div class="box">
-        <img src="static/images/user.png" class="image_user" height="50">
-        <h1 class="title">Create Profile </h1>  
-    </div>
     
-    <!-- <div class="container-fluid">
-        <div class="row">
-            <div class="col-5 jumbotron p-2 mx-1">
-                <h1 class="sensor1"> Sensor : </h1>
-            </div>
-            <br>
+      <div class="box-form">
+        <div class="create">
+            <h1 class="title">Create Profile </h1>
+        </div> 
+        <div class="form">
+            <form action = "/success_user" method = "post" enctype="multipart/form-data">
+                <div class = "contenido">
+                    Semester <br>
+                    <label for = "s1">1 </label>
+                    <input type ="radio" id="s1" name="semester" value="1" required/>
+                    <label for = "s2">2 </label>
+                    <input type ="radio" id="s2" name="semester" value="2"/>
+                    <label for = "s3">3 </label>
+                    <input type ="radio" id="s3" name="semester" value="3"/>
+                    <label for = "s4">4 </label>
+                    <input type ="radio" id="s4" name="semester" value="4"/>
+                    <label for = "s5">5 </label>
+                    <input type ="radio" id="s5" name="semester" value="5"/>
+                    <label for = "s6">6 </label>
+                    <input type ="radio" id="s6" name="semester" value="6"/><br>
+                    <!--saber si como vamos a almacenar el usuario -->
+
+                    Degree <br>
+                    <label for = "bachelor">Bachelor </label>
+                    <input type ="radio" id="bachelor" name="degree" value="bachelor" required/>
+                    <label for = "master">Master </label>
+                    <input type ="radio" id="master" name="degree" value="master"/><br>
+
+                    Language <br>
+                    <label for = "english">English </label>
+                    <input type ="radio" id="english" name="language" value="english" required/>
+                    <label for = "german">German </label>
+                    <input type ="radio" id="german" name="language" value="german"/><br>
+
+                    <form action = "/add_course" method = "post" enctype="multipart/form-data"></form>
+                        <label for = "courses">Courses </label>
+                        <input type ="text" id="courses" name="courses"/>
+                        <input type = "submit" value="Ok" class="button2">
+                    </form><br>
+
+                    <label for = "study_program">Study Program </label>
+                    <select id= "study_program" name="study_program">
+                        <option value="computer science">Computer Science</option>
+                        <option value="medicine">Medicine</option>
+                        <option value="chemistry">Chemistry</option>
+                        <option value="data science">Data Science</option>
+                    </select><br>
+
+                    <label for = "interest">Interest </label>
+                    <input type ="text" id="interest" name="interest"/><br><br><br>
+                    <input type = "submit" value="Create User" class="button">
+                </div>
+            </form>
         </div>
-    </div> -->
-    <div>
-        <form action = "/success_user" method = "post" enctype="multipart/form-data" class="form">
-            <div class = "contenido">
-                Semester <br>
-                <label for = "all_s">all </label>
-                <input type ="checkbox" id="all_s" name="all_s" value="all"/>
-                <label for = "s1">1 </label>
-                <input type ="checkbox" id="s1" name="s1" value="1"/>
-                <label for = "s2">2 </label>
-                <input type ="checkbox" id="s2" name="s2" value="2"/>
-                <label for = "s3">3 </label>
-                <input type ="checkbox" id="s3" name="s3" value="3"/>
-                <label for = "s4">4 </label>
-                <input type ="checkbox" id="s4" name="s4" value="4"/>
-                <label for = "s5">5 </label>
-                <input type ="checkbox" id="s5" name="s5" value="5"/>
-                <label for = "s6">6 </label>
-                <input type ="checkbox" id="s6" name="s6" value="6"/><br>
-                <!--saber si como vamos a almacenar el usuario -->
-
-                Program <br>
-                <label for = "all_p">all </label>
-                <input type ="checkbox" id="all_p" name="all_p" value="all"/>
-                <label for = "bachelor">Bachelor </label>
-                <input type ="checkbox" id="bachelor" name="bachelor" value="bachelor"/>
-                <label for = "master">Master </label>
-                <input type ="checkbox" id="master" name="master" value="master"/><br>
-
-                <label for = "courses">Courses </label>
-                <input type ="text" id="courses" name="courses"/><br><br>
-
-                <label for = "study_program">Study Program </label>
-                <select id= "study_program">
-                    <option value="1">Uno</option>
-                    <option value="2">Dos</option>
-                    <option value="3">Tres</option>
-                    <option value="4">Cuatro</option>
-                </select><br>
-
-                <label for = "interest">Interest </label>
-                <input type ="text" id="interest" name="interest"/><br><br><br>
-            </div>
-
-        </form>
-        <br>
-        <input type = "submit" value="Create User" class="button">
     </div>
-
-    <img src="static/images/logo.png" class="logo">
 
     <style>
-        /* .jumbotron{
-            widows: 100px;
-            height: 150px;
-            justify-content: center;
-        } */
+        body{
+            background-size: cover;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .box-form{
+            margin-top: 150px;
+            margin-left: 100px;
+        }
 
         .title{
             color: white;
-            margin-left: 10px;
+            margin-left: 10px;font-size:x-large;
         }
 
-        .image_user{
-            margin-left: 800px;
+        .logo{
+            height: 50px;
         }
 
-        .box{
-            margin-top: 100px;
-            background-color: rgb(15, 1, 75);
+        .create{
+            display: flex;
+            background-color: black;
             padding: 10px;
-            display:flex;
-        }
-
-        .row{                      
-            justify-content: center;
+            width: 500px;
         }
 
         .form{
-            justify-content: center;
-            margin-left: 750px;
-            background-color: rgb(141, 201, 236);
-            margin-right: 750px;
+            background-color: rgb(250, 250, 250);
             padding: 20px;
-            margin-top: 100px;
-            border-radius: 3px;
-            border-style: solid;
-            border-color: black;
+            width: 500px;
         }
 
         .contenido{
-            margin-left: 50px;
+            margin-left: 70px;
             margin-top: 10px;
         }
 
         .button{
-            margin-left: 900px;
+            width: 310px;
+            background-color: black;
+            border:none;
+            height: 50px;
+            color: white;
         }
 
-        .logo{
-            height: 90px;
-            position:absolute;
-            bottom:15px;
-            right:15px;
+        .button:hover{
+            background-color: rgb(73, 73, 73);
         }
 
     </style>
