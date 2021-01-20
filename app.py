@@ -83,15 +83,16 @@ def add_data():
         # user.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interest})
         return render_template("index.html") 
 
-courses = np.array([])
+global courses 
+courses = []
 
-@app.route("/add_course", methods=['POST'])
+@app.route("/add_course", methods=['GET','POST'])
 def add_course():
     if request.method == "POST":
-        np.append(courses,request.form['courses'])
+        courses.append(request.form['courses'])
         for i in courses:
             print(i)
-        return render_template("app.html")
+    return render_template("app.html")
 
         
 
