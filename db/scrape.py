@@ -16,12 +16,12 @@ DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
 
 
 
-client = pymongo.MongoClient('mongodb+srv://mvpp:${DATABASE_PASSWORD}@lectures.b4cq3.mongodb.net/${DATABASE_NAME}?retryWrites=true&w=majority')
+client = MongoClient("mongodb+srv://martin:{}@cluster0.ehkpp.mongodb.net/{}?retryWrites=true&w=majority".format(DATABASE_PASSWORD,DATABASE_NAME))
 
 #client = MongoClient()
-db = client.test_database
+db = client.get_database(DATABASE_NAME)
 
-lectures = db.lectures
+lectures = db.lecture_profiles
 
 
 urls = ['https://www.uni-due.de/vdb/en_EN/pruefung/1245/detail',
