@@ -50,11 +50,21 @@
             <h1 class="title">Create Profile </h1>
         </div> 
         <div class="form">
+
             <form action = "/add_course" method = "post" enctype="multipart/form-data">
                 <label for = "courses">Courses </label>
-                <input type ="text" id="courses" name="courses"/><br>
+                <input type ="text" id="courses" name="courses"/>
                 <input type ="submit" value="Ok" class="button2">
             </form><br>
+
+            
+
+            <form action = "/add_interest" method = "post" enctype="multipart/form-data">
+                <label for = "interest">Interest </label>
+                <input type ="text" id="interest" name="interest"/>
+                <input type = "submit" value="Ok" class="button2">
+            </form><br>
+
             <form action = "/success_user" method = "post" enctype="multipart/form-data">
                 <div class = "contenido">
                     Semester <br>
@@ -90,11 +100,8 @@
                         <option value="chemistry">Chemistry</option>
                         <option value="data science">Data Science</option>
                     </select><br>
-
-                    <label for = "interest">Interest </label>
-                    <input type ="text" id="interest" name="interest"/><br><br><br>
-                    <input type = "submit" value="Create User" class="button">
                 </div>
+                <input type = "submit" value="Create User" class="button">
             </form>
         </div>
     </div>

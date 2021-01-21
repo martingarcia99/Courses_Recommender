@@ -70,15 +70,13 @@ def add_data():
         semester = request.form['semester']
         degree = request.form['degree']
         language = request.form['language']
-        courses = request.form['courses']
+        #courses = request.form['courses']
         sp = request.form['study_program']
-        interest = request.form['interest']
+        #interest = request.form['interest']
         print(semester)
         print(degree)
         print(language)
-        print(courses)
         print(sp)
-        print(interest)
 
         # user.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interest})
         return render_template("index.html") 
@@ -90,6 +88,14 @@ courses = []
 def add_course():
     if request.method == "POST":
         courses.append(request.form['courses'])
+        for i in courses:
+            print(i)
+    return render_template("app.html")
+
+@app.route("/add_interest", methods=['GET','POST'])
+def add_interest():
+    if request.method == "POST":
+        courses.append(request.form['interest'])
         for i in courses:
             print(i)
     return render_template("app.html")
