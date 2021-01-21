@@ -40,7 +40,6 @@ from bson import json_util
 from flask_pymongo import PyMongo
 import numpy as np
 
-
 app=Flask(__name__)
 
 client = MongoClient("mongodb+srv://martin:xu6wqoAm@cluster0.ehkpp.mongodb.net/LA?retryWrites=true&w=majority")
@@ -66,18 +65,20 @@ def add_data():
         semester = request.form['semester']
         degree = request.form['degree']
         language = request.form['language']
-        #courses = request.form['courses']
+        courses = request.form['courses']
         sp = request.form['study_program']
-        #interest = request.form['interest']
+        interest = request.form['interest']
         print(semester)
         print(degree)
         print(language)
+        print(courses)
         print(sp)
+        print(interest)
 
         # user.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interest})
         return render_template("index.html") 
 
-global courses 
+global courses,interest
 courses = []
 
 @app.route("/add_course", methods=['GET','POST'])
