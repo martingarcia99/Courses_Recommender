@@ -40,6 +40,7 @@ from bson import json_util
 from flask_pymongo import PyMongo
 import numpy as np
 
+
 app=Flask(__name__)
 #app.config['MONGO_URI'] = 'mongodb+srv://martin:xu6wqoAm@cluster0.ehkpp.mongodb.net/LA?retryWrites=true&w=majority'
 
