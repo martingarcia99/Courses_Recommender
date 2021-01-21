@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, make_response
 import json
 from time import time
 
+
 app=Flask(__name__)
 
 global dataList
