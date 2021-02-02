@@ -1,13 +1,3 @@
-#Natural-Language-based Human-Computer Interaction  = https://www.uni-due.de/vdb/en_EN/pruefung/1053/detail
-#Grundlagen der Sozialpsychologie = https://www.uni-due.de/vdb/en_EN/pruefung/93/detail
-#Grundlagen der Medienpsychologie = https://www.uni-due.de/vdb/en_EN/pruefung/101/detail
-#Electronic Communities and Social Networks  = https://www.uni-due.de/vdb/en_EN/pruefung/721/detail
-#Scientific Visualization  = https://www.uni-due.de/vdb/en_EN/pruefung/603/detail
-#Basic Programming Skills  = https://www.uni-due.de/vdb/en_EN/pruefung/39/detail
-#Computer Graphics  = https://www.uni-due.de/vdb/en_EN/pruefung/720/detail
-#Data Structures and Algorithms  = https://www.uni-due.de/vdb/en_EN/pruefung/44/detail
-#Advanced Image Synthesis  = https://www.uni-due.de/vdb/en_EN/pruefung/800/detail
-#Information Mining  = https://www.uni-due.de/vdb/en_EN/pruefung/601/detail
 List of Lectures with their url:
 
 Learning Analytics = https://www.uni-due.de/vdb/en_EN/pruefung/1245/detail
