@@ -22,7 +22,7 @@ client = MongoClient("mongodb+srv://martin:{}@cluster0.ehkpp.mongodb.net/{}?retr
 db = client.get_database(DATABASE_NAME)
 
 lectures = db.lecture_profiles
-#lectures.remove( { } )
+lectures.remove( { } )
 lectures.create_index([('lecture_id', pymongo.ASCENDING)], unique=True)
 
 lecture_id = 1
@@ -358,8 +358,8 @@ with requests.Session() as sesh:
             strings.append(element.string)
         return strings
 
-    f = open("db/docs/readMe.txt", "a")
-    f.write("List of Lectures with their url:\n\n")
+    f = open("db/docs/readMe.md", "a")
+    f.write("# List of Lectures with their url:\n")
 
     for url in urls:
         response = sesh.get(url)
@@ -376,8 +376,8 @@ with requests.Session() as sesh:
         pre_qualifications = soup.select_one('#en_EN > table > tr:nth-child(4) > td:nth-child(2)').get_text() if soup.select_one('#en_EN > table > tr:nth-child(4) > td:nth-child(2)') != None else ""
         course_format = soup.select_one ('fieldset.highlight-blue > table > tr:nth-child(2) > td:nth-child(2) > p').get_text() if soup.select_one ('fieldset.highlight-blue > table > tr:nth-child(2) > td:nth-child(2) > p') != None else ""
         
-        f.write(lecture_name +' = ' + url + '\n')
-
+        f.write('* ['+ lecture_name +'](' + url + ')\n')
+        """
         cleaned_lecture_name = clean_lecture_name(lecture_name)
 
         full_path_pdf_ws19_20 = get_path('db/docs/ws_19_20', cleaned_lecture_name)
@@ -418,4 +418,5 @@ with requests.Session() as sesh:
             lecture_new['lecture_id'] = lecture_id
             id = lectures.insert_one(lecture_new).inserted_id
             lecture_id+=1
+            """
     f.close()
