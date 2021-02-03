@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/images/course.png">
+
+    <title>Course</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/jumbotron.css" rel="stylesheet">
+
+    <!--Bokeh -->
+    <link rel="stylesheet" href={{cdn_css | safe}} type="text/css" />
+    <script type="text/javascript" src={{cdn_js | safe}}></script>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <img src="static/images/logo.png" class="logo">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a title="Github" href="https://github.com/martingarcia99/LA_Project"><img src="../static/images/github.png" style="height: 40px;margin-right: 10px;"/></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">About Us <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="app">Tool</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Learning Analytics</h1>
+          <p>Learning Analytics (LA) has attracted a great deal of attention as practitioners, institutions, and researchers are increasingly seeing the potential that LA has to shape the future technology-enhanced learning landscape. LA is an emerging data science field that represents the application of big data and analytics in education. It deals with the development of methods that harness educational data sets to support the learning process. LA is an interdisciplinary field involving competences from computer science, cognitive psychology, and pedagogy. It leverages various computer science methods. These include statistics, big data, machine learning, data/text mining, information visualization, visual analytics, and recommender systems. The first part of the course will provide a systematic overview on this emerging field and its key concepts through a reference model for LA based on four dimensions, namely data, environments, context (what?), stakeholders (who?), objectives (why?), and methods (how?). In the second part of this courses, we will discuss various methods and techniques required to develop innovative LA systems, in relation to each dimension of the LA reference model. In the last part of the course, current topics and trends in LA research will be presented and dicussed in invited taks. The presented methods and technologies will be further investigated and applied in small student projects carried out throughout the course.</p>
+          <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Assigned People</h2>
+            <p>Prof. Mohamed Amine Chatti</p>
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          </div>
+          <div class="col-md-4">
+            <h2>Learning Targets</h2>
+            <td><p>After successfully completing the module, students can:</p><p><em>Knowledge:</em></p><ul><li>Explain the theoretical and technical foundations of learning analytics</li><li>Systematically describe the development process of learning analytics systems</li><li>Discuss requirements and parameters for the use of different learning analytics methods</li><li>Identify current trends and research questions in learning analytics</li></ul><p><em>Skills:</em></p><ul><li>Select adequate tools for the implementation of learning analytics systems, apply them in practice and assess the achieved results</li><li>Effectively plan and implement small learning analytics projects</li></ul><p><em>Competencies:</em></p><p>Based on the knowledge and skills acquired in the module, students can:</p><ul><li>Propose creative solutions for learning analytics</li><li>Discuss the pros and cons of different learning analytics technologies</li><li>Design and implement innovative learning analytics systems in interdisciplinary teams</li><li>Take responsibility in project development teams</li></ul></td>
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          </div>
+          <div class="col-md-4">
+            <h2>Course Format</h2>
+            <p>Lecture, practical exercises, student presentations and discussion, project work in small groups, workshop</p>
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          </div>
+        </div>
+
+        <hr>
+
+        <h1 style="text-align: center;">Average</h1>
+        
+        <div class="graph">
+          {{script | safe}}
+          {{div | safe}}
+        </div>
+
+
+        <hr>
+
+      </div> <!-- /container -->
+
+    </main>
+    <style>
+      body{
+          background-size: cover;
+          font-family: 'Montserrat', sans-serif;
+      }
+
+      .logo{
+          height: 50px;
+          padding: 5px;
+          background-color: white;
+          border-radius: 10px;
+      }
+
+      .graph{
+        margin-left: 23%;
+      }
+    </style>
+
+    <footer class="container">
+      <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
+    </footer>
+  </body>
+</html>

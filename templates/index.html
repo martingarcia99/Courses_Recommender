@@ -3,6 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <link rel="icon" href="../static/images/home.png">
     <title>Main Web Page</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
@@ -39,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="app">Create User</a>
+              <a class="nav-link" href="signin">Access</a>
             </li>
           </ul>
         </div>
@@ -47,7 +48,7 @@
 
     <div class="box">
         <h1 class="title">Courses Recommendation</h1>
-        <a class="idea">The main idea of this project is to give a student the possibility to have his subjects recommended based on his criteria and interests. </a>
+        <!-- <a class="idea">The main idea of this project is to give a student the possibility to have his subjects recommended based on his criteria and interests. </a> -->
     </div>
     
     <!-- <input type = "submit" value="Create User" class="button" onclick="location.href='app'"> -->
@@ -63,7 +64,9 @@
 
         .title{
             color: black;
-            font-weight: 500px;
+            /* font-weight: 500px; */
+            animation-duration: 3s;
+            animation-name: slidein;
         }
 
         .idea{
@@ -76,17 +79,31 @@
             /* margin-top: 590px; */
             background-color: rgb(226, 226, 226);
             padding: 100px;
-            width: auto; 
+            height: 25%;
             position: absolute;
+            width: 100%;
             bottom: 0;
             display: flex; 
             flex-direction: row;
-
+            animation-duration: 3s;
+            animation-name: slidein;
         }
 
         .button{
             margin-top: 100px;
             margin-left: 900px;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
         }
 
     </style>

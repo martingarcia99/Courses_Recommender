@@ -3,7 +3,8 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Visualization</title>
+    <link rel="icon" href="../static/images/app.png">
+    <title>Recommendation Courses</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,9 +27,14 @@
 
     <!--Gauge  -->
     <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
+
+    <!--Bokeh -->
+    <link rel="stylesheet" href={{cdn_css | safe}} type="text/css" />
+    <script type="text/javascript" src={{cdn_js | safe}}></script>
 </head>
 
-<body background="static/images/formulario.png">
+<body background="static/images/formulario.png" >
+    <!-- style="-webkit-filter: blur(5px); filter: blur(5px);" -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img src="static/images/logo.png" class="logo">
@@ -37,74 +43,156 @@
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-          </ul>
-        </div>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a title="Github" href="https://github.com/martingarcia99/LA_Project"><img src="../static/images/github.png" style="height: 40px;margin-right: 10px;"/></a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="aboutus">About Us <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+          </div>
       </nav>
-    
-      <div class="box-form">
-        <div class="create">
-            <h1 class="title">Create Profile </h1>
-        </div> 
-        <div class="form">
+      <main>
+        {% if animation == "off" %}
+        <div class="box-form">
+            <div class="create">
+                <h1 class="title">Recommendation Courses</h1>
+            </div> 
+            <div class="form">
 
-            <form action = "/add_course" method = "post" enctype="multipart/form-data">
-                <label for = "courses">Courses </label>
-                <input type ="text" id="courses" name="courses"/>
-                <input type ="submit" value="Ok" class="button2">
-            </form><br>
+                <!-- <form action = "/add_course" method = "post" enctype="multipart/form-data">
+                    <label for = "courses">Courses </label>
+                    <input type ="text" id="courses" name="courses"/>
+                    <input type ="submit" value="Ok" class="button2">
+                </form>
+                {% for course in courses %}
+                    <font class="titulo">{{course}}</font>
+                {% endfor %} -->
 
-            
+                <form action = "/add_interest" method = "post" enctype="multipart/form-data">
+                    <label for = "interest">Interest </label>
+                    <input type ="text" id="interest" name="interest"/>
+                    <input type = "submit" value="Ok" class="button2">
+                </form>
+                {% for interest in interests %}
+                    <font class="titulo2">{{interest}}</font>
+                {% endfor %}
 
-            <form action = "/add_interest" method = "post" enctype="multipart/form-data">
-                <label for = "interest">Interest </label>
-                <input type ="text" id="interest" name="interest"/>
-                <input type = "submit" value="Ok" class="button2">
-            </form><br>
+                <form action = "/success_user" method = "post" enctype="multipart/form-data">
+                    <div class = "contenido">
+                        Semester <br>
+                        <label for = "s1">1 </label>
+                        <input type ="radio" id="s1" name="semester" value="1" required/>
+                        <label for = "s2">2 </label>
+                        <input type ="radio" id="s2" name="semester" value="2"/>
+                        <label for = "s3">3 </label>
+                        <input type ="radio" id="s3" name="semester" value="3"/>
+                        <label for = "s4">4 </label>
+                        <input type ="radio" id="s4" name="semester" value="4"/>
+                        <label for = "s5">5 </label>
+                        <input type ="radio" id="s5" name="semester" value="5"/>
+                        <label for = "s6">6 </label>
+                        <input type ="radio" id="s6" name="semester" value="6"/><br>
 
-            <form action = "/success_user" method = "post" enctype="multipart/form-data">
-                <div class = "contenido">
-                    Semester <br>
-                    <label for = "s1">1 </label>
-                    <input type ="radio" id="s1" name="semester" value="1" required/>
-                    <label for = "s2">2 </label>
-                    <input type ="radio" id="s2" name="semester" value="2"/>
-                    <label for = "s3">3 </label>
-                    <input type ="radio" id="s3" name="semester" value="3"/>
-                    <label for = "s4">4 </label>
-                    <input type ="radio" id="s4" name="semester" value="4"/>
-                    <label for = "s5">5 </label>
-                    <input type ="radio" id="s5" name="semester" value="5"/>
-                    <label for = "s6">6 </label>
-                    <input type ="radio" id="s6" name="semester" value="6"/><br>
+                        Degree <br>
+                        <label for = "bachelor">Bachelor </label>
+                        <input type ="radio" id="bachelor" name="degree" value="bachelor" required/>
+                        <label for = "master">Master </label>
+                        <input type ="radio" id="master" name="degree" value="master"/><br>
 
-                    Degree <br>
-                    <label for = "bachelor">Bachelor </label>
-                    <input type ="radio" id="bachelor" name="degree" value="bachelor" required/>
-                    <label for = "master">Master </label>
-                    <input type ="radio" id="master" name="degree" value="master"/><br>
+                        Language <br>
+                        <label for = "english">English </label>
+                        <input type ="radio" id="english" name="language" value="english" required/>
+                        <label for = "german">German </label>
+                        <input type ="radio" id="german" name="language" value="german"/><br>
 
-                    Language <br>
-                    <label for = "english">English </label>
-                    <input type ="radio" id="english" name="language" value="english" required/>
-                    <label for = "german">German </label>
-                    <input type ="radio" id="german" name="language" value="german"/><br>
-
-                    <label for = "study_program">Study Program </label>
-                    <select id= "study_program" name="study_program">
-                        <option value="computer science">Computer Science</option>
-                        <option value="medicine">Medicine</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="data science">Data Science</option>
-                    </select><br>
-                </div>
-                <input type = "submit" value="Create User" class="button">
-            </form>
+                        <label for = "study_program">Study Program </label>
+                        <select id= "study_program" name="study_program" style="width:450px;"">
+                            {% for lecture in lectures %}
+                            <option value='{{ lecture }}'>{{lecture}}</option>
+                            {% endfor %}
+                        </select><br>
+                    </div>
+                    <br>
+                    <input type = "submit" value="Search" class="button">
+                </form>
+            </div>
         </div>
-    </div>
+        {% else %}
+        <div class="box-form" style="animation-duration: 3s;animation-name: slidein;">
+            <div class="create">
+                <h1 class="title">Recommendation Courses</h1>
+            </div> 
+            <div class="form">
+
+                <!-- <form action = "/add_course" method = "post" enctype="multipart/form-data">
+                    <label for = "courses">Courses </label>
+                    <input type ="text" id="courses" name="courses"/>
+                    <input type ="submit" value="Ok" class="button2">
+                </form>
+                {% for course in courses %}
+                    <font class="titulo">{{course}}</font>
+                {% endfor %} -->
+
+                <form action = "/add_interest" method = "post" enctype="multipart/form-data">
+                    <label for = "interest">Interest </label>
+                    <input type ="text" id="interest" name="interest"/>
+                    <input type = "submit" value="Ok" class="button2">
+                </form>
+                {% for interest in interests %}
+                    <font class="titulo2">{{interest}}</font>
+                {% endfor %}
+
+                <form action = "/success_user" method = "post" enctype="multipart/form-data">
+                    <div class = "contenido">
+                        Semester <br>
+                        <label for = "s1">1 </label>
+                        <input type ="radio" id="s1" name="semester" value="1" required/>
+                        <label for = "s2">2 </label>
+                        <input type ="radio" id="s2" name="semester" value="2"/>
+                        <label for = "s3">3 </label>
+                        <input type ="radio" id="s3" name="semester" value="3"/>
+                        <label for = "s4">4 </label>
+                        <input type ="radio" id="s4" name="semester" value="4"/>
+                        <label for = "s5">5 </label>
+                        <input type ="radio" id="s5" name="semester" value="5"/>
+                        <label for = "s6">6 </label>
+                        <input type ="radio" id="s6" name="semester" value="6"/><br>
+
+                        Degree <br>
+                        <label for = "bachelor">Bachelor </label>
+                        <input type ="radio" id="bachelor" name="degree" value="bachelor" required/>
+                        <label for = "master">Master </label>
+                        <input type ="radio" id="master" name="degree" value="master"/><br>
+
+                        Language <br>
+                        <label for = "english">English </label>
+                        <input type ="radio" id="english" name="language" value="english" required/>
+                        <label for = "german">German </label>
+                        <input type ="radio" id="german" name="language" value="german"/><br>
+
+                        <label for = "study_program">Study Program </label>
+                        <select id= "study_program" name="study_program" style="width:450px;"">
+                            {% for lecture in lectures %}
+                            <option value='{{ lecture }}'>{{lecture}}</option>
+                            {% endfor %}
+                        </select><br>
+                    </div>
+                    <br>
+                    <input type = "submit" value="Search" class="button">
+                </form>
+            </div>
+        </div>
+        {% endif %}
+        {% if graph == True %}
+            <div class="graph" style="animation-duration: 3s;animation-name: slidein2;">
+                <!-- <img src="../static/images/graph_example.png" style="width: 70%;"/> -->
+                {{script | safe}}
+                {{div | safe}}
+            </div>
+        {% endif %}
+    </main>
 
     <style>
         body{
@@ -112,9 +200,15 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        main{
+            display: flex;
+            flex-direction: row;
+        }
+
         .box-form{
             margin-top: 150px;
             margin-left: 100px;
+            position: absolute;
         }
 
         .title{
@@ -133,15 +227,36 @@
             width: 500px;
         }
 
+        .graph{
+            margin-top: 10%;
+            margin-left: 60%;
+            position: relative;
+        }
+
         .form{
             background-color: rgb(250, 250, 250);
             padding: 20px;
             width: 500px;
         }
 
-        .contenido{
-            margin-left: 70px;
-            margin-top: 10px;
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+            }
+
+            to {
+                margin-left: 5%;
+            }
+        }
+
+        @keyframes slidein2 {
+            from {
+                margin-left: 100%;
+            }
+
+            to {
+                margin-left: 60%;
+            }
         }
 
         .button{
@@ -150,145 +265,31 @@
             border:none;
             height: 50px;
             color: white;
+            margin-left: 70px;
         }
 
         .button:hover{
             background-color: rgb(73, 73, 73);
         }
 
+        .titulo{
+            background-color: rgb(0, 243, 211);
+            color:black;
+            font-size: 15px;
+            text-align: center;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .titulo2{
+            background-color: rgb(0, 243, 41);
+            color:black;
+            font-size: 15px;
+            text-align: center;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
     </style>
-
-    <!-- <div class="container-fluid">
-        <div class="row">
-            <div class="container-fluid" id="data-temperature">
-
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="container-fluid" id="data-humidity">
-
-            </div>
-        </div>
-    </div> -->
-<!-- <script>
-    let chartData;
-
-    function requestData()
-    {
-        // Ajax call to get the Data from Flask
-        let requests = $.get('/data');
-
-        let tm = requests.done(function (result)
-        {
-            if(result){
-            // Temperature
-            let seriesData = chartData.series[0],
-                shiftData = seriesData.data.length > 20;
-
-            // Add the Point
-            // Time Beat\
-            let data1 = [];
-            data1.push(result.time);
-            data1.push(result.beat);
-
-
-            chartData.series[0].addPoint(data1, true, shiftData);
-            $(".sensor1").text("");
-            $(".sensor1").text("Beat : " +  Math.round(data1[1]) );
-        }
-            // call it again after one second
-            setTimeout(requestData, 4000);
-
-        });
-    }
-
-    $(document).ready(function()
-    {
-        // --------------Chart 1 ----------------------------
-        chartData = new Highcharts.Chart({
-            chart:
-                {
-                renderTo: 'data-temperature',
-                defaultSeriesType: 'area',
-                events: {
-                    load: requestData
-                        }
-                },
-            title:
-                {
-                text: 'Beat'
-                },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150,
-                maxZoom: 20 * 1000
-                    },
-            yAxis: {
-                minPadding: 0.2,
-                maxPadding: 0.2,
-                title: {
-                    text: 'Value',
-                    margin: 80
-                        }
-                     },
-            series: [{
-                color : '#06516F',
-                lineColor: '#303030',
-                name: 'Beat',
-                data: []
-            }]
-        });
-        // --------------Chart 1 Ends - -----------------
-    });
-</script> -->
-
-<!-- <script>
-    class Image{
-
-        constructor(imgUrl, size)
-        {
-            this.imgUrl=imgUrl;
-            this.size=size;
-        }
-
-        backgroundImage()
-        {
-            console.log("inside function ")
-            // Select the Image
-            var img = document.querySelector(".jumbotron");
-
-            // create Css Text
-            var text = "margin:auto;"+
-                "background-image: url("+this.imgUrl+");" +
-                "background-size:cover;"+
-                "opacity:1;"+
-                "background-blend-mode: darken;"+
-                "height: "+ this.size + "vh;";
-
-            img.style.cssText =  text;
-        }
-
-        centerTitle()
-        {
-            /*
-                Center the Title
-             */
-            var t1 = document.querySelector("#title");
-            t1.classList.add("text-white");
-            t1.classList.add("text-center");
-            t1.classList.add("display-3");
-        }
-    }
-    const imgUrl = 'https://www.narayanahealth.org/blog/wp-content/uploads/2020/06/shutterstock_1175809159-1170x587.jpg'
-    const size = "69";
-    var obj = new Image(imgUrl, size);
-    obj.backgroundImage();
-    obj.centerTitle();
-    </script> -->
 </body>
 </html>
