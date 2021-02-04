@@ -33,7 +33,7 @@
     <script type="text/javascript" src={{cdn_js | safe}}></script>
 </head>
 
-<body background="static/images/formulario.png" >
+<body background="../static/images/formulario.png">
     <!-- style="-webkit-filter: blur(5px); filter: blur(5px);" -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -52,7 +52,7 @@
               </li>
             </ul>
           </div>
-      </nav>
+    </nav>
       <main>
         {% if animation == "off" %}
         <div class="box-form">
@@ -60,16 +60,6 @@
                 <h1 class="title">Recommendation Courses</h1>
             </div> 
             <div class="form">
-
-                <!-- <form action = "/add_course" method = "post" enctype="multipart/form-data">
-                    <label for = "courses">Courses </label>
-                    <input type ="text" id="courses" name="courses"/>
-                    <input type ="submit" value="Ok" class="button2">
-                </form>
-                {% for course in courses %}
-                    <font class="titulo">{{course}}</font>
-                {% endfor %} -->
-
                 <form action = "/add_interest" method = "post" enctype="multipart/form-data">
                     <label for = "interest">Interest </label>
                     <input type ="text" id="interest" name="interest"/>
@@ -81,20 +71,6 @@
 
                 <form action = "/success_user" method = "post" enctype="multipart/form-data">
                     <div class = "contenido">
-                        Semester <br>
-                        <label for = "s1">1 </label>
-                        <input type ="radio" id="s1" name="semester" value="1" required/>
-                        <label for = "s2">2 </label>
-                        <input type ="radio" id="s2" name="semester" value="2"/>
-                        <label for = "s3">3 </label>
-                        <input type ="radio" id="s3" name="semester" value="3"/>
-                        <label for = "s4">4 </label>
-                        <input type ="radio" id="s4" name="semester" value="4"/>
-                        <label for = "s5">5 </label>
-                        <input type ="radio" id="s5" name="semester" value="5"/>
-                        <label for = "s6">6 </label>
-                        <input type ="radio" id="s6" name="semester" value="6"/><br>
-
                         Degree <br>
                         <label for = "bachelor">Bachelor </label>
                         <input type ="radio" id="bachelor" name="degree" value="bachelor" required/>
@@ -125,16 +101,6 @@
                 <h1 class="title">Recommendation Courses</h1>
             </div> 
             <div class="form">
-
-                <!-- <form action = "/add_course" method = "post" enctype="multipart/form-data">
-                    <label for = "courses">Courses </label>
-                    <input type ="text" id="courses" name="courses"/>
-                    <input type ="submit" value="Ok" class="button2">
-                </form>
-                {% for course in courses %}
-                    <font class="titulo">{{course}}</font>
-                {% endfor %} -->
-
                 <form action = "/add_interest" method = "post" enctype="multipart/form-data">
                     <label for = "interest">Interest </label>
                     <input type ="text" id="interest" name="interest"/>
@@ -218,11 +184,12 @@
 
         .logo{
             height: 50px;
+            padding: 5px;
         }
 
         .create{
             display: flex;
-            background-color: black;
+            background-color: rgb(52,101,164);
             padding: 10px;
             width: 500px;
         }
@@ -261,7 +228,7 @@
 
         .button{
             width: 310px;
-            background-color: black;
+            background-color: rgb(52,101,164);
             border:none;
             height: 50px;
             color: white;
@@ -282,8 +249,8 @@
         }
 
         .titulo2{
-            background-color: rgb(0, 243, 41);
-            color:black;
+            background-color: rgb(52,101,164);
+            color:white;
             font-size: 15px;
             text-align: center;
             border-radius: 10px;
