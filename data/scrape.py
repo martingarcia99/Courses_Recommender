@@ -22,7 +22,6 @@ urls = ['https://www.uni-due.de/vdb/en_EN/pruefung/1245/detail',
         'https://www.uni-due.de/vdb/en_EN/pruefung/93/detail', 
         'https://www.uni-due.de/vdb/en_EN/pruefung/101/detail', 
         'https://www.uni-due.de/vdb/en_EN/pruefung/728/detail', 
-        'https://www.uni-due.de/vdb/en_EN/pruefung/721/detail', 
         'https://www.uni-due.de/vdb/en_EN/pruefung/305/detail',
         'https://www.uni-due.de/vdb/en_EN/pruefung/70/detail',
         'https://www.uni-due.de/vdb/en_EN/pruefung/48/detail',
@@ -87,7 +86,7 @@ urls = ['https://www.uni-due.de/vdb/en_EN/pruefung/1245/detail',
        
 lecture_mapping = {
     'learning_analytics': 'Learning_Analytics.pdf',
-    'cloud_web_mobile': 'Cloud_Web_Mobile.pdf',
+    'cloud_web_and_mobile': 'Cloud_Web_Mobile.pdf',
     'distributed_systems': 'Distributed_Systems.pdf',
     'natural_language_based_human_computer_interaction': 'Natürlichsprachliche_Mensch_Computer_Interaktion.pdf',
     'advanced_web_technologies': 'Advanced_Web_Technologies.pdf',
@@ -329,6 +328,7 @@ def get_lecture(semester, lecture, full_path_pdf, cleaned_lecture_name):
     return lecture_copie
 
 def clean_lecture_name(lecture_name):
+
     cleaned_lecture_name = re.sub('[&,:]', '', lecture_name).replace('/', '').replace('  ', ' ').replace(' ', '_').replace('-', '_').lower()
     if cleaned_lecture_name.endswith('_'): cleaned_lecture_name = cleaned_lecture_name[:-1]
     return cleaned_lecture_name
@@ -350,6 +350,7 @@ with requests.Session() as sesh:
         soup = BeautifulSoup(html, features="lxml")   
         lecture_name = soup.select_one('#masttitle').span.extract().get_text() if soup.select_one('#masttitle').span != None else soup.select_one('#masttitle').get_text()
         if lecture_name.endswith(' '): lecture_name = lecture_name[:-1]
+        if '&' in lecture_name: lecture_name = lecture_name.replace('&', 'and')
         assigned_people = get_elements(soup.select_one('fieldset.highlight-blue:nth-child(8) > ul:nth-child(2)').find_all('a') if soup.select_one('fieldset.highlight-blue:nth-child(8) > ul:nth-child(2)') != None else [])
         study_courses = get_elements(soup.select_one('fieldset.highlight-blue:nth-child(7) > ul:nth-child(2)').find_all('a') if soup.select_one('fieldset.highlight-blue:nth-child(7) > ul:nth-child(2)') != None else []) 
         language = soup.select_one('fieldset.highlight-blue > table > tr:nth-child(3) > td:nth-child(2)').string if soup.select_one('fieldset.highlight-blue > table > tr:nth-child(3) > td:nth-child(2)') != None else ""
@@ -360,7 +361,7 @@ with requests.Session() as sesh:
         
         f.write('* ['+ lecture_name +'](' + url + ')\n')
         cleaned_lecture_name = clean_lecture_name(lecture_name)
-
+        print('cleaned Lecture name: '+cleaned_lecture_name)
         full_path_pdf_ws19_20 = get_path('data/docs/ws_19_20', cleaned_lecture_name)
         full_path_pdf_ss19 = get_path('data/docs/ss2019', cleaned_lecture_name)
         semester = None
@@ -398,6 +399,7 @@ with requests.Session() as sesh:
             lecture_new = lecture
             lecture_new['lecture_id'] = lecture_id
             lecture_new['comments'] = ''
+            lecture_new['avg_rating'] = ''
 
             id = lectures.insert_one(lecture_new).inserted_id
             lecture_id+=1

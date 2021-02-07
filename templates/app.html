@@ -62,7 +62,7 @@
             <div class="form">
                 <form action = "/add_interest" method = "post" enctype="multipart/form-data">
                     <label for = "interest">Interest </label>
-                    <input type ="text" id="interest" name="interest"/>
+                    <input type ="text" id="interest" name="interest" required />
                     <input type = "submit" value="Ok" class="button2">
                 </form>
                 {% for interest in interests %}
@@ -71,17 +71,13 @@
 
                 <form action = "/success_user" method = "post" enctype="multipart/form-data">
                     <div class = "contenido">
-                        Degree <br>
-                        <label for = "bachelor">Bachelor </label>
-                        <input type ="radio" id="bachelor" name="degree" value="bachelor" required/>
-                        <label for = "master">Master </label>
-                        <input type ="radio" id="master" name="degree" value="master"/><br>
-
                         Language <br>
                         <label for = "english">English </label>
-                        <input type ="radio" id="english" name="language" value="english" required/>
+                        <input type ="radio" id="english" name="language" value="English" required/>
                         <label for = "german">German </label>
-                        <input type ="radio" id="german" name="language" value="german"/><br>
+                        <input type ="radio" id="german" name="language" value="German"/><br>
+                        <label for = "german">Both</label>
+                        <input type ="radio" id="german" name="language" value="German/English"/><br>
 
                         <label for = "study_program">Study Program </label>
                         <select id= "study_program" name="study_program" style="width:450px;"">
@@ -103,7 +99,7 @@
             <div class="form">
                 <form action = "/add_interest" method = "post" enctype="multipart/form-data">
                     <label for = "interest">Interest </label>
-                    <input type ="text" id="interest" name="interest"/>
+                    <input type ="text" id="interest" name="interest" required/>
                     <input type = "submit" value="Ok" class="button2">
                 </form>
                 {% for interest in interests %}
@@ -112,31 +108,13 @@
 
                 <form action = "/success_user" method = "post" enctype="multipart/form-data">
                     <div class = "contenido">
-                        Semester <br>
-                        <label for = "s1">1 </label>
-                        <input type ="radio" id="s1" name="semester" value="1" required/>
-                        <label for = "s2">2 </label>
-                        <input type ="radio" id="s2" name="semester" value="2"/>
-                        <label for = "s3">3 </label>
-                        <input type ="radio" id="s3" name="semester" value="3"/>
-                        <label for = "s4">4 </label>
-                        <input type ="radio" id="s4" name="semester" value="4"/>
-                        <label for = "s5">5 </label>
-                        <input type ="radio" id="s5" name="semester" value="5"/>
-                        <label for = "s6">6 </label>
-                        <input type ="radio" id="s6" name="semester" value="6"/><br>
-
-                        Degree <br>
-                        <label for = "bachelor">Bachelor </label>
-                        <input type ="radio" id="bachelor" name="degree" value="bachelor" required/>
-                        <label for = "master">Master </label>
-                        <input type ="radio" id="master" name="degree" value="master"/><br>
-
                         Language <br>
                         <label for = "english">English </label>
-                        <input type ="radio" id="english" name="language" value="english" required/>
+                        <input type ="radio" id="english" name="language" value="English" required/>
                         <label for = "german">German </label>
-                        <input type ="radio" id="german" name="language" value="german"/><br>
+                        <input type ="radio" id="german" name="language" value="German"/><br>
+                        <label for = "german">Both</label>
+                        <input type ="radio" id="german" name="language" value="German/English"/><br>
 
                         <label for = "study_program">Study Program </label>
                         <select id= "study_program" name="study_program" style="width:450px;"">

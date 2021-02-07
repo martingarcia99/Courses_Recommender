@@ -28,7 +28,7 @@ class DataCleaner:
     __stop_words = set(stopwords.words('english')) 
     __tokenizer = RegexpTokenizer(r'\w+')
     __df = pd.DataFrame(list(lectures.find()))
-    data = __df.drop(columns = ['_id', 'avg_rating', 'assigned_people', 'language', 'course_format', 'study_courses', 'semester', 'comments'])
+    data = __df.drop(columns = ['_id', 'avg_rating', 'assigned_people', 'course_format', 'semester', 'comments'])
     
     def __remove_html(self, text):
         soup = BeautifulSoup(text, 'lxml')
