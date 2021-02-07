@@ -14,6 +14,8 @@ from bokeh.layouts import gridplot
 from bokeh.resources import CDN
 from bokeh.models import FactorRange, OpenURL, TapTool
 import re
+from data.machine_learning.recommandation.content_based.gensim_d2v import GensimD2VRecommender
+from data.bokeh.recommendation_graph import RecommendationGraph
 
 load_dotenv()
 
@@ -37,32 +39,7 @@ for lecture in lectures.find():
 
 
 ##########################################################     Bokeh Visualization Data 1  ############################################################################################
-courses = ['Internet of Things: Protocols and System Software', 'Learning Analytics', 'Embedded Systems', 'Distributed Systems']
-percentage = [50, 80, 40, 30]
-    
-source = ColumnDataSource(data=dict(courses=courses, percentage=percentage))
 
-TOOLTIPS = [("percentage", "@percentage"),("","@courses")]
-
-# sorting the bars means sorting the range factors
-sorted_courses = sorted(courses, key=lambda x: percentage[courses.index(x)])
-
-p = figure(x_range=sorted_courses, plot_height=350, title="Courses %", tools="hover,pan,box_select,zoom_in,zoom_out,save,reset,tap", tooltips=TOOLTIPS) 
-
-p.vbar(x='courses', top='percentage', width=0.5, source=source, color="rgb(52,101,164)")
-
-url = "http://127.0.0.1:5000/course/@courses"
-
-taptool = p.select(type=TapTool)
-taptool.callback = OpenURL(url=url)
-
-p.xaxis.visible = None
-p.xgrid.grid_line_color = None
-p.y_range.start = 0
-
-script,div = components(p)
-cdn_js = CDN.js_files[0]
-cdn_css = CDN.css_files
 
 ##########################################################     Bokeh Visualization Data 2  ############################################################################################
 semester = ["WS18/19", "SS19", "WS19/20", "SS20"]
@@ -137,13 +114,18 @@ interests = list()
 
 @app.route("/success_user", methods=['POST'])
 def add_data():
+    recommendations = []
     if request.method == "POST":
-        degree = request.form['degree']
         language = request.form['language']
-        sp = request.form['study_program']
+        study_program = request.form['study_program']
+        recommender = GensimD2VRecommender()
+        recommendations = recommender.recommend(interests, language, study_program)
         # users.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interests})
+        graph = RecommendationGraph()
+        script, div, cdn_css, cdn_js = graph.createRecommendationGraph(recommendations)
         interests.clear()
         return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",script=script,div=div,cdn_js = cdn_js,cdn_css = cdn_css) 
+
 
 @app.route("/add_interest", methods=['GET','POST'])
 def add_interest():
