@@ -37,12 +37,12 @@ for lecture in lectures.find():
 
 
 ##########################################################     Bokeh Visualization Data 1  ############################################################################################
-courses = ['Grundlagen der Sozialpsychologie', 'Learning Analytics', 'Cloud, Web and Mobile', 'Distributed Systems']
+courses = ['Internet of Things: Protocols and System Software', 'Learning Analytics', 'Embedded Systems', 'Distributed Systems']
 percentage = [50, 80, 40, 30]
     
 source = ColumnDataSource(data=dict(courses=courses, percentage=percentage))
 
-TOOLTIPS = [("percentage", "@percentage")]
+TOOLTIPS = [("percentage", "@percentage"),("","@courses")]
 
 # sorting the bars means sorting the range factors
 sorted_courses = sorted(courses, key=lambda x: percentage[courses.index(x)])
@@ -56,6 +56,7 @@ url = "http://127.0.0.1:5000/course/@courses"
 taptool = p.select(type=TapTool)
 taptool.callback = OpenURL(url=url)
 
+p.xaxis.visible = None
 p.xgrid.grid_line_color = None
 p.y_range.start = 0
 
@@ -95,19 +96,18 @@ cdn_css2 = CDN.css_files
 
 
 ##########################################################   ROOTS   ############################################################################################
+#variable to define if the password was written or not
 global ps
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
     global ps 
     ps = False
-    print(ps)
     if request.method == "GET":
         return render_template("index.html")
 
 @app.route("/app", methods=['GET', 'POST'])
 def perfil():
-    print(ps)
     if request.method == "GET":
         if ps == True:
             return render_template("app.html",lectures=final_lectures)
@@ -126,12 +126,12 @@ def login():
         if request.form['password'] == PASSWORD:
             global ps 
             ps = True
-            print(ps)
             return render_template("app.html", lectures=final_lectures)
         else:
             print("incorrect password")
             return render_template("signin.html",login="false")
 
+#array of interests that the user writes on the formn
 global interests 
 interests = list()
 
@@ -155,21 +155,24 @@ def add_interest():
         
 @app.route("/course/<course>", methods=['GET','POST'])
 def info_course(course):
-    print(course)
-    lecture = lectures.find({"name": course})
-    for l in lecture:
-        name = l['name']
-        description = l['description']
-        description = re.sub("<.*?>", "", description)
-        professor = l['assigned_people']
-        targets = l['learning_targets']
-        targets = re.sub("<.*?>", "", targets)
-        course_format = l['course_format']
-        # comments = l['comments']
-        rating = l['avg_rating']
     if request.method == "GET":
+        print(course)
+        lecture = lectures.find({"name": course})
+        for l in lecture:
+            name = l['name']
+            description = l['description']
+            description = description.replace("span","p")
+            description = description.replace("white","none")
+            print(description)
+            professor = l['assigned_people']
+            targets = l['learning_targets']
+            targets = targets.replace("span","p")
+            # targets = re.sub("<.*?>", "", targets)
+            course_format = l['course_format']
+            comments = l['comments']
+            # rating = l['avg_rating']
         return render_template("course.html", script=script2,div=div2,cdn_js = cdn_js2,cdn_css = cdn_css2, name=name,desc=description,prof=professor,targets=targets,
-                                cf=course_format,rating=rating)
+                                cf=course_format,comments=comments)
 
 @app.route("/aboutus", methods=['GET','POST'])
 def info_us():
