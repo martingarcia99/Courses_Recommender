@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/images/course.png">
+
+    <title>{{name}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/jumbotron.css" rel="stylesheet">
+
+    <!--Bokeh -->
+    <link rel="stylesheet" href={{cdn_css | safe}} type="text/css" />
+    <script type="text/javascript" src={{cdn_js | safe}}></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <img src="../static/images/logo.png" class="logo">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a title="Github" href="https://github.com/martingarcia99/LA_Project"><img src="../static/images/github.png" style="height: 40px;margin-right: 10px;"/></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/aboutus">About Us <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/app">Tool</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">{{name}}</h1>
+          {{desc | safe}}
+          <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Assigned People</h2>
+            <ul>
+              {% for p in prof %}
+              <li>{{p}}</li>
+              {% endfor %}
+            </ul>
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          </div>
+          <div class="col-md-4">
+            <h2>Learning Targets</h2>
+            {{targets | safe}}
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          </div>
+          <div class="col-md-4">
+            <h2>Course Format</h2>
+            {{cf}}
+            <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          </div>
+        </div>
+
+        <hr>
+
+        <h1 style="text-align: center;">Average</h1>
+        
+        {% if rating != '' %}
+          <div class="graph">
+            {{script | safe}}
+            {{div | safe}}
+          </div>
+        {% endif %}
+
+        <hr>
+
+        <h1>Comments</h1>
+          {% for c in comments %}
+            <li>{{c}}</li>
+          {% endfor %}
+        <hr>
+
+      </div> <!-- /container -->
+
+    </main>
+    <style>
+      body{
+          background-size: cover;
+          font-family: 'Montserrat', sans-serif;
+      }
+
+      .logo{
+          height: 50px;
+          padding: 5px;
+          background-color: white;
+          border-radius: 10px;
+      }
+
+      .graph{
+        margin-left: 23%;
+      }
+    </style>
+
+    <footer class="container">
+      <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
+    </footer>
+  </body>
+</html>
