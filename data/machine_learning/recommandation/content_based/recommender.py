@@ -2,20 +2,21 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel 
 import os, sys
-currentdir = os.path.dirname(os.path.realpath(__file__))
-parentdir = os.path.dirname(currentdir)
-parentdir2 = os.path.dirname(parentdir)
-parentdir3 = os.path.dirname(parentdir2)
+content_based_ordner = os.path.dirname(os.path.realpath(__file__))
+recommedation_ordner = os.path.dirname(content_based_ordner)
+machine_learning_ordner = os.path.dirname(recommedation_ordner)
+data_ordner = os.path.dirname(machine_learning_ordner)
 
-sys.path.append(parentdir3)
+sys.path.append(data_ordner)
 from nlp.cleaner import DataCleaner
 
 data_cleaner = DataCleaner()
 data = data_cleaner.cleaned_data()
+data.to_csv(r'data/data.csv', index = False)
 #print (print(data.iloc[0]['combined']))
 tfidf = TfidfVectorizer(analyzer='word', ngram_range=(1, 3), min_df=0)
 tfidf_matrix = tfidf.fit_transform(data['combined'])
-print(tfidf_matrix)
+#print(tfidf_matrix)
 #print(len(tfidf.get_feature_names()))
 
 #print(tfidf_matrix.shape)
@@ -41,4 +42,4 @@ def recommend(item_id, num):
     for rec in recs: 
        print("Recommended: " + item(rec[1]) + " (score:" + str(rec[0]) + ")")
 
-print(recommend(item_id=5, num=5))
+print(recommend(item_id=41, num=5))
