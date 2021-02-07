@@ -142,14 +142,19 @@ def add_data():
         language = request.form['language']
         sp = request.form['study_program']
         # users.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interests})
-        interests.clear()
         return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",script=script,div=div,cdn_js = cdn_js,cdn_css = cdn_css) 
+
 
 @app.route("/add_interest", methods=['GET','POST'])
 def add_interest():
     if request.method == "POST":
         data = request.form['interest']
         interests.append(data)
+    return render_template("app.html", interests=interests, lectures=final_lectures, animation="off")
+
+@app.route("/delete_interest", methods=['GET','POST'])
+def delete_interests():
+    interests.clear()
     return render_template("app.html", interests=interests, lectures=final_lectures, animation="off")
 
         
