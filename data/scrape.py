@@ -400,6 +400,7 @@ with requests.Session() as sesh:
             lecture_new['lecture_id'] = lecture_id
             lecture_new['comments'] = ''
             lecture_new['avg_rating'] = ''
+            lecture_new['semester'] = ''
 
             id = lectures.insert_one(lecture_new).inserted_id
             lecture_id+=1

@@ -44,34 +44,7 @@ for lecture in lectures.find():
     final_lectures.extend([element for element in lecture['study_courses'] if element not in final_lectures])
 
 ##########################################################     Bokeh Visualization Data 2  ############################################################################################
-semester = ["WS18/19", "SS19", "WS19/20", "SS20"]
-#avg. of course rating
-avg = [4.5, 6, 3, 2]
 
-source = ColumnDataSource(data=dict(semester=semester, avg=avg))
-
-TOOLTIPS = [("AverageRating", "@avg")]
-
-p2 = figure(x_range=FactorRange(*semester), plot_height=250, tools="hover,pan,box_select,zoom_in,zoom_out,save,reset,tap", tooltips=TOOLTIPS)
-
-p2.vbar(x=semester, top=avg, width=0.9, alpha=0.5, color="rgb(52,101,164)")
-
-# p2.line(x=["WS18/19", "SS19", "WS19/20", "SS20"], y=[4.5, 6, 3, 2], color="red", line_width=2)
-
-url = "https://trello.com/c/YcD1oQfR/36-bokeh-visualization-of-the-recommendation"
-taptool = p2.select(type=TapTool)
-taptool.callback = OpenURL(url=url)
-
-p2.line(x='semester', y='avg', source=source, color="red", line_width=2)
-
-p2.y_range.start = 0
-p2.x_range.range_padding = 0.1
-p2.xaxis.major_label_orientation = 1
-p2.xgrid.grid_line_color = None
-
-script2,div2 = components(p2)
-cdn_js2 = CDN.js_files[0]
-cdn_css2 = CDN.css_files
 
 
 ##########################################################   ROOTS   ############################################################################################
@@ -160,9 +133,14 @@ def info_course(course):
             # targets = re.sub("<.*?>", "", targets)
             course_format = l['course_format']
             comments = l['comments']
-            # rating = l['avg_rating']
-        return render_template("course.html", script=script2,div=div2,cdn_js = cdn_js2,cdn_css = cdn_css2, name=name,desc=description,prof=professor,targets=targets,
+            semester = l['semester'] if l['semester'] != None else ''
+            rating = l['avg_rating'] if l['avg_rating'] != None else  ''
+            graph = RecommendationGraph()
+            if rating != None and semester != None:
+                script, div, cdn_css, cdn_js = graph.createAverageRatingGraph(rating, semester)
+                return render_template("course.html", script=script,div=div,cdn_js = cdn_js,cdn_css = cdn_css, name=name,desc=description,prof=professor,targets=targets,
                                 cf=course_format,comments=comments,language=language)
+            
 
 @app.route("/aboutus", methods=['GET','POST'])
 def info_us():
