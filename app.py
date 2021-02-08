@@ -5,7 +5,6 @@ import json
 from bson import json_util
 from flask_pymongo import PyMongo
 import numpy as np
-import pandas as pd
 from dotenv import load_dotenv
 import os
 from bokeh.plotting import figure, output_file, show, ColumnDataSource
