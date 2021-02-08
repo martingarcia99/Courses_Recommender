@@ -15,13 +15,7 @@ from bokeh.models import FactorRange, OpenURL, TapTool
 import re
 from data.machine_learning.recommandation.content_based.gensim_d2v import GensimD2VRecommender
 from data.bokeh.recommendation_graph import RecommendationGraph
-from boto.s3.connection import S3Connection
-
-# s3 = S3Connection(os.environ['MONGODB_URI'])
-# print(s3)
-
-MONGO_URL = S3Connection(os.environ['MONGODB_URI'])
-
+from db import MyDatabase
 
 load_dotenv()
 
@@ -36,10 +30,13 @@ app=Flask(__name__)
 ##########################################################   DATABASE CONNECTION  #######################################################################################
 
 # client = MongoClient("mongodb+srv://martin:{}@cluster0.ehkpp.mongodb.net/{}?retryWrites=true&w=majority".format(DATABASE_PASSWORD,DATABASE_NAME))
-client = MongoClient(MONGO_URL)
-db = client.get_database(DATABASE_NAME)
-users = db.user_profiles
-lectures = db.lecture_profiles
+# client = MongoClient(MONGO_URL)
+# db = client.get_database(DATABASE_NAME)
+# users = db.user_profiles
+# lectures = db.lecture_profiles
+
+database = MyDatabase()
+lectures = database.lectures
 
 ##########################################################   List of all the study courses  #######################################################################################
 final_lectures = list()
