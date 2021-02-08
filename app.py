@@ -125,10 +125,13 @@ def add_data():
         study_program = request.form['study_program']
         recommender = GensimD2VRecommender()
         recommendations = recommender.recommend(interests, language, study_program)
-        # users.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interests})
-        graph = RecommendationGraph()
-        script, div, cdn_css, cdn_js = graph.createRecommendationGraph(recommendations)
-        return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",script=script,div=div,cdn_js = cdn_js,cdn_css = cdn_css) 
+
+        if type(recommendations) == list:
+            graph = RecommendationGraph()
+            script, div, cdn_css, cdn_js = graph.createRecommendationGraph(recommendations)
+            return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",script=script,div=div,cdn_js = cdn_js,cdn_css = cdn_css) 
+        else:
+            return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",string=recommendations, alert=True) 
 
 
 @app.route("/add_interest", methods=['GET','POST'])

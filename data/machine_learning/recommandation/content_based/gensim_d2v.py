@@ -59,15 +59,18 @@ class GensimD2VRecommender:
             vec[count] = c
             count+=1
 
-        modelDoc= gensim.models.Doc2Vec(__docs, vector_size=150, window=15, min_count=2, workers=4, epochs=40)
-        new_vec = modelDoc.infer_vector(interests)
-        similar_doc = modelDoc.docvecs.most_similar([new_vec], topn=topn)
-        print(similar_doc)
-        for row,index in similar_doc:
-            pos = vec[row]
-            print(str(pos) +'-'+ str(index))
-            print(data['name'][pos]+ ' - Similarity= ' + str(index))
-            
-            recommendations.append((data['name'][pos], index))
-        return recommendations
+        if data.empty == False:
+            modelDoc= gensim.models.Doc2Vec(__docs, vector_size=150, window=15, min_count=2, workers=4, epochs=40)
+            new_vec = modelDoc.infer_vector(interests)
+            similar_doc = modelDoc.docvecs.most_similar([new_vec], topn=topn)
+            print(similar_doc)
+            for row,index in similar_doc:
+                pos = vec[row]
+                print(str(pos) +'-'+ str(index))
+                print(data['name'][pos]+ ' - Similarity= ' + str(index))
+                
+                recommendations.append((data['name'][pos], index))
+            return recommendations
+        else:
+            return "No Results for this Search"
         #print(len(model.wv.vocab))
