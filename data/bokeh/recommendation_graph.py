@@ -15,9 +15,6 @@ class RecommendationGraph:
                     p = x[1] * 100
                     courses.append(x[0])
                     percentage.append(p)
-            
-            print(courses)
-            print(percentage)
 
             source = ColumnDataSource(data=dict(courses=courses, percentage=percentage))
 

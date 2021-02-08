@@ -62,12 +62,16 @@
             <div class="form">
                 <form action = "/add_interest" method = "post" enctype="multipart/form-data">
                     <label for = "interest">Interest </label>
-                    <input type ="text" id="interest" name="interest" required />
+                    <input type ="text" id="interest" name="interest"/>
                     <input type = "submit" value="Ok" class="button2">
                 </form>
+                <br>
                 {% for interest in interests %}
                     <font class="titulo2">{{interest}}</font>
                 {% endfor %}
+                <form action = "/delete_interest" method = "post" enctype="multipart/form-data">
+                    <input type = "submit" value="Delete" class="button2">
+                </form>
 
                 <form action = "/success_user" method = "post" enctype="multipart/form-data">
                     <div class = "contenido">
@@ -75,9 +79,9 @@
                         <label for = "english">English </label>
                         <input type ="radio" id="english" name="language" value="English" required/>
                         <label for = "german">German </label>
-                        <input type ="radio" id="german" name="language" value="German"/><br>
-                        <label for = "german">Both</label>
-                        <input type ="radio" id="german" name="language" value="German/English"/><br>
+                        <input type ="radio" id="german" name="language" value="German"/>
+                        <label for = "German/English">Both</label>
+                        <input type ="radio" id="German/English" name="language" value="German/English"/><br>
 
                         <label for = "study_program">Study Program </label>
                         <select id= "study_program" name="study_program" style="width:450px;"">
@@ -99,12 +103,16 @@
             <div class="form">
                 <form action = "/add_interest" method = "post" enctype="multipart/form-data">
                     <label for = "interest">Interest </label>
-                    <input type ="text" id="interest" name="interest" required/>
+                    <input type ="text" id="interest" name="interest"/>
                     <input type = "submit" value="Ok" class="button2">
                 </form>
+                <br>
                 {% for interest in interests %}
                     <font class="titulo2">{{interest}}</font>
                 {% endfor %}
+                <form action = "/delete_interest" method = "post" enctype="multipart/form-data">
+                    <input type = "submit" value="Delete" class="button2">
+                </form>
 
                 <form action = "/success_user" method = "post" enctype="multipart/form-data">
                     <div class = "contenido">
@@ -112,9 +120,9 @@
                         <label for = "english">English </label>
                         <input type ="radio" id="english" name="language" value="English" required/>
                         <label for = "german">German </label>
-                        <input type ="radio" id="german" name="language" value="German"/><br>
-                        <label for = "german">Both</label>
-                        <input type ="radio" id="german" name="language" value="German/English"/><br>
+                        <input type ="radio" id="german" name="language" value="German"/>
+                        <label for = "German/English">Both</label>
+                        <input type ="radio" id="German/English" name="language" value="German/English"/><br>
 
                         <label for = "study_program">Study Program </label>
                         <select id= "study_program" name="study_program" style="width:450px;"">

@@ -25,6 +25,9 @@ PASSWORD = os.getenv("PASSWORD")
 
 app=Flask(__name__)
 
+
+
+
 ##########################################################   DATABASE CONNECTION  #######################################################################################
 
 client = MongoClient("mongodb+srv://martin:{}@cluster0.ehkpp.mongodb.net/{}?retryWrites=true&w=majority".format(DATABASE_PASSWORD,DATABASE_NAME))
@@ -123,7 +126,6 @@ def add_data():
         # users.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interests})
         graph = RecommendationGraph()
         script, div, cdn_css, cdn_js = graph.createRecommendationGraph(recommendations)
-        interests.clear()
         return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",script=script,div=div,cdn_js = cdn_js,cdn_css = cdn_css) 
 
 
@@ -132,6 +134,11 @@ def add_interest():
     if request.method == "POST":
         data = request.form['interest']
         interests.append(data)
+    return render_template("app.html", interests=interests, lectures=final_lectures, animation="off")
+
+@app.route("/delete_interest", methods=['GET','POST'])
+def delete_interests():
+    interests.clear()
     return render_template("app.html", interests=interests, lectures=final_lectures, animation="off")
 
         
@@ -145,7 +152,7 @@ def info_course(course):
             description = l['description']
             description = description.replace("span","p")
             description = description.replace("white","none")
-            print(description)
+            language = l['language']
             professor = l['assigned_people']
             targets = l['learning_targets']
             targets = targets.replace("span","p")
@@ -154,7 +161,7 @@ def info_course(course):
             comments = l['comments']
             # rating = l['avg_rating']
         return render_template("course.html", script=script2,div=div2,cdn_js = cdn_js2,cdn_css = cdn_css2, name=name,desc=description,prof=professor,targets=targets,
-                                cf=course_format,comments=comments)
+                                cf=course_format,comments=comments,language=language)
 
 @app.route("/aboutus", methods=['GET','POST'])
 def info_us():
