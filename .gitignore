@@ -1,1 +1,10 @@
 .env
+.vscode/
+/libraries
+db/docs/html_page_comments
+db/docs/html_page_gesamtbewertung
+db/docs/pdf_page_comments
+db/docs/pdf_page_gesamtbewertung
+db/docs/ws_18_19/
+db/docs/readMeSS19.txt
+db/docs/readMeWS19-20.txt

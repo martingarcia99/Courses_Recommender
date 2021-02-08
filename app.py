@@ -1,37 +1,3 @@
-# from flask import Flask, render_template, request, make_response
-# import json
-# from time import time
-
-# app=Flask(__name__)
-
-# dataList
-# dataList = []
-
-
-# @app.route("/", methods=['GET', 'POST'])
-# def home():
-#     if request.method == "GET":
-#         return render_template("app.html")        
-
-# @app.route("/data", methods=['GET', 'POST'])
-# def datas():
-#     if request.method == "GET":
-#         if len(dataList) > 0:
-#             print(len(dataList))
-#             response = make_response(json.dumps(dataList.pop(0)))
-#             response.content_type = 'application/json'
-#             return response
-#         else: return make_response()
-#     else:
-#         print(request.json)
-#         data = {
-#             'time' : time() * 1000,
-#             'beat' : request.json['temperature'],
-#         }
-#         dataList.append(data)
-#         print(dataList)
-#         return make_response("ACK")
-
 from flask import Flask, render_template, request
 import pymongo
 from pymongo import MongoClient
@@ -39,13 +5,19 @@ import json
 from bson import json_util
 from flask_pymongo import PyMongo
 import numpy as np
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+DATABASE_NAME = os.getenv("DATABASE_NAME")
+DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
 
 app=Flask(__name__)
 
-client = MongoClient("mongodb+srv://martin:xu6wqoAm@cluster0.ehkpp.mongodb.net/LA?retryWrites=true&w=majority")
-db = client.get_database("LA")
-user = db.profiles
+client = MongoClient("mongodb+srv://martin:{}@cluster0.ehkpp.mongodb.net/{}?retryWrites=true&w=majority".format(DATABASE_PASSWORD,DATABASE_NAME))
+db = client.get_database(DATABASE_NAME)
+user = db.user_profiles
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -74,6 +46,7 @@ def add_data():
         print(language)
         print(sp)
 
+        user.insert({"name":"martin","age":"21"})
         # user.insert({"semester":semester, "degree":degree, "language":language, "courses":courses, "study_program":sp, "interest":interest})
         return render_template("index.html") 
 
