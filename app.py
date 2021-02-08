@@ -15,6 +15,11 @@ from bokeh.models import FactorRange, OpenURL, TapTool
 import re
 from data.machine_learning.recommandation.content_based.gensim_d2v import GensimD2VRecommender
 from data.bokeh.recommendation_graph import RecommendationGraph
+from boto.s3.connection import S3Connection
+
+s3 = S3Connection(os.environ['MONGODB_URI'])
+print(s3)
+
 
 load_dotenv()
 
@@ -23,7 +28,6 @@ DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
 PASSWORD = os.getenv("PASSWORD")
 
 app=Flask(__name__)
-
 
 
 
