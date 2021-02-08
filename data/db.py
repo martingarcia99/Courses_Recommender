@@ -2,10 +2,10 @@ import pymongo
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
-from boto.s3.connection import S3Connection
+# from boto.s3.connection import S3Connection
 
-MONGO_URL = S3Connection(os.environ['MONGODB_URI'])
-
+# MONGO_URL = S3Connection(os.environ['MONGODB_URI'])
+MONGO_URL = os.environ.get('MONGODB_URI')
 load_dotenv()
 
 DATABASE_NAME = os.getenv("DATABASE_NAME")
