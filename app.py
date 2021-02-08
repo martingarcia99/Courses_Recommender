@@ -111,8 +111,7 @@ def login():
             ps = True
             return render_template("app.html", lectures=final_lectures)
         else:
-            print("incorrect password")
-            return render_template("signin.html",login="false")
+            return render_template("signin.html",login="false",ps=PASSWORD, password=request.form['password'])
 
 #array of interests that the user writes on the formn
 global interests 
