@@ -19,9 +19,9 @@ from db import MyDatabase
 
 load_dotenv()
 
-DATABASE_NAME = os.getenv("DATABASE_NAME")
-DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
-PASSWORD = os.getenv("PASSWORD")
+# DATABASE_NAME = os.getenv("DATABASE_NAME")
+# DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
+PASSWORD = os.environ.get("PASSWORD")
 
 app=Flask(__name__)
 
