@@ -15,9 +15,22 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 from db import MyDatabase
+from dotenv import load_dotenv
+from boto.s3.connection import S3Connection
 
-database = MyDatabase()
-lectures = database.lectures
+# s3 = S3Connection(os.environ['MONGODB_URI'])
+# print(s3)
+load_dotenv()
+
+DATABASE_NAME = os.getenv("DATABASE_NAME")
+MONGO_URL = S3Connection(os.environ['MONGODB_URI'])
+
+client = MongoClient(MONGO_URL)
+db = client.get_database(DATABASE_NAME)
+users = db.user_profiles
+lectures = db.lecture_profiles
+# database = MyDatabase()
+# lectures = database.lectures
 
 nltk.download('wordnet')
 nltk.download('stopwords')
