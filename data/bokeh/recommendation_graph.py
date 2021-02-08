@@ -3,6 +3,7 @@ from bokeh.embed import components
 from bokeh.layouts import gridplot
 from bokeh.resources import CDN
 from bokeh.models import FactorRange, OpenURL, TapTool
+from bokeh.palettes import GnBu3, OrRd3
 
 class RecommendationGraph:
 
@@ -23,7 +24,7 @@ class RecommendationGraph:
             # sorting the bars means sorting the range factors
             sorted_courses = sorted(courses, key=lambda x: percentage[courses.index(x)])
 
-            p = figure(x_range=sorted_courses, plot_height=350, title="Recommendation %", tools="hover,pan,box_select,zoom_in,zoom_out,save,reset,tap", tooltips=TOOLTIPS) 
+            p = figure(x_range=sorted_courses, plot_height=350, y_range=(0,100), title="Recommendation %", tools="hover,pan,box_select,zoom_in,zoom_out,save,reset,tap", tooltips=TOOLTIPS) 
 
             p.vbar(x='courses', top='percentage', width=0.5, source=source, color="rgb(52,101,164)")
 
@@ -43,7 +44,9 @@ class RecommendationGraph:
             cdn_css = CDN.css_files
             return script, div, cdn_css, cdn_js
         else:
+            print("No recommendations found")
             return "No recommendations found"
 
+    
     
         

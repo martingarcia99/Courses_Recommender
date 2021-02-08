@@ -43,10 +43,6 @@ final_lectures = list()
 for lecture in lectures.find():
     final_lectures.extend([element for element in lecture['study_courses'] if element not in final_lectures])
 
-
-##########################################################     Bokeh Visualization Data 1  ############################################################################################
-
-
 ##########################################################     Bokeh Visualization Data 2  ############################################################################################
 semester = ["WS18/19", "SS19", "WS19/20", "SS20"]
 #avg. of course rating
@@ -124,9 +120,9 @@ def add_data():
         language = request.form['language']
         study_program = request.form['study_program']
         recommender = GensimD2VRecommender()
-        recommendations = recommender.recommend(interests, language, study_program)
+        recommendations= recommender.recommend(interests, language, study_program)
 
-        if type(recommendations) == list:
+        if recommendations != "No Results for this Search":
             graph = RecommendationGraph()
             script, div, cdn_css, cdn_js = graph.createRecommendationGraph(recommendations)
             return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",script=script,div=div,cdn_js = cdn_js,cdn_css = cdn_css) 

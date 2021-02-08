@@ -69,7 +69,10 @@ class GensimD2VRecommender:
                 print(str(pos) +'-'+ str(index))
                 print(data['name'][pos]+ ' - Similarity= ' + str(index))
                 
-                recommendations.append((data['name'][pos], index))
+                if index > 0:
+                    recommendations.append((data['name'][pos], index))
+                else:
+                    recommendations = "No Results for this Search"
             return recommendations
         else:
             return "No Results for this Search"
