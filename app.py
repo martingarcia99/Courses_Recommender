@@ -90,12 +90,13 @@ def add_data():
         study_program = request.form['study_program']
         recommender = GensimD2VRecommender()
         recommendations= recommender.recommend(interests, language, study_program)
-
         if recommendations != "No Results for this Search":
             graph = RecommendationGraph()
             script, div, cdn_css, cdn_js = graph.createRecommendationGraph(recommendations)
+            interests.clear()
             return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",script=script,div=div,cdn_js = cdn_js,cdn_css = cdn_css) 
         else:
+            interests.clear()
             return render_template("app.html",lectures=final_lectures, interests=interests, graph=True, animation = "off",string=recommendations, alert=True) 
 
 
