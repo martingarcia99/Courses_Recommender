@@ -351,6 +351,8 @@ with requests.Session() as sesh:
         lecture_name = soup.select_one('#masttitle').span.extract().get_text() if soup.select_one('#masttitle').span != None else soup.select_one('#masttitle').get_text()
         if lecture_name.endswith(' '): lecture_name = lecture_name[:-1]
         if '&' in lecture_name: lecture_name = lecture_name.replace('&', 'and')
+        if '/' in lecture_name: lecture_name = lecture_name.replace('/', '')
+        if '-' in lecture_name: lecture_name = lecture_name.replace('-', ' ')
         assigned_people = get_elements(soup.select_one('fieldset.highlight-blue:nth-child(8) > ul:nth-child(2)').find_all('a') if soup.select_one('fieldset.highlight-blue:nth-child(8) > ul:nth-child(2)') != None else [])
         study_courses = get_elements(soup.select_one('fieldset.highlight-blue:nth-child(7) > ul:nth-child(2)').find_all('a') if soup.select_one('fieldset.highlight-blue:nth-child(7) > ul:nth-child(2)') != None else []) 
         language = soup.select_one('fieldset.highlight-blue > table > tr:nth-child(3) > td:nth-child(2)').string if soup.select_one('fieldset.highlight-blue > table > tr:nth-child(3) > td:nth-child(2)') != None else ""

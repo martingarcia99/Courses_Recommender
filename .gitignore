@@ -8,3 +8,10 @@ db/docs/pdf_page_gesamtbewertung
 db/docs/ws_18_19/
 db/docs/readMeSS19.txt
 db/docs/readMeWS19-20.txt
+*.pyc
+__pycache__/
+*/*/*/__pycache__/
+
+*/*/__pycache__/
+
+*/__pycache__/
