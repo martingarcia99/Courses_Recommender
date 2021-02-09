@@ -70,7 +70,7 @@
                 {% for interest in interests %}
                     <font class="titulo2">{{interest}}</font>
                 {% endfor %}
-                <form action = "/delete_interest" method = "get" enctype="multipart/form-data">
+                <form action = "/delete_interest" method = "post" enctype="multipart/form-data">
                     <input type = "submit" value="Delete" class="button2">
                 </form>
 
@@ -111,7 +111,7 @@
                 {% for interest in interests %}
                     <font class="titulo2">{{interest}}</font>
                 {% endfor %}
-                <form action = "/delete_interest" method = "get" enctype="multipart/form-data">
+                <form action = "/delete_interest" method = "post" enctype="multipart/form-data">
                     <input type = "submit" value="Delete" class="button2">
                 </form>
 
