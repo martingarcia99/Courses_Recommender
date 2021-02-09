@@ -43,10 +43,6 @@ final_lectures = list()
 for lecture in lectures.find():
     final_lectures.extend([element for element in lecture['study_courses'] if element not in final_lectures])
 
-##########################################################     Bokeh Visualization Data 2  ############################################################################################
-
-
-
 ##########################################################   ROOTS   ############################################################################################
 #variable to define if the password was written or not
 global ps
