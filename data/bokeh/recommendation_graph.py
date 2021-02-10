@@ -28,8 +28,8 @@ class RecommendationGraph:
 
             p.vbar(x='courses', top='percentage', width=0.5, source=source, color="rgb(52,101,164)")
 
-            #url = "https://laproject.herokuapp.com/course/@courses"
-            url = "http://127.0.0.1:5000/course/@courses"
+            url = "https://laproject.herokuapp.com/course/@courses"
+            # url = "http://127.0.0.1:5000/course/@courses"
             
 
             taptool = p.select(type=TapTool)
