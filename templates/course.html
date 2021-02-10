@@ -92,10 +92,13 @@
 
         <hr>
         
+        {% if evaluation != '' %}
         <h1 style="text-align: center;">Information about the Evaluation</h1>
-        <form  style="text-align: center;" method="get" action="https://trello.com/c/YcD1oQfR/36-bokeh-visualization-of-the-recommendation">
+        <form  style="text-align: center;" method="get" action={{evaluation | safe}}>
           <button type="submit">Evaluation</button>
         </form>
+        {% endif %}
+        
         <hr>
 
         <h1>Comments</h1>

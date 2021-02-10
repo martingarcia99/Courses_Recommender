@@ -28,8 +28,8 @@ class RecommendationGraph:
 
             p.vbar(x='courses', top='percentage', width=0.5, source=source, color="rgb(52,101,164)")
 
-            url = "https://laproject.herokuapp.com/course/@courses"
-            # url = "http://127.0.0.1:5000/course/@courses"
+            #url = "https://laproject.herokuapp.com/course/@courses"
+            url = "http://127.0.0.1:5000/course/@courses"
             
 
             taptool = p.select(type=TapTool)
@@ -77,7 +77,7 @@ class RecommendationGraph:
 
         p2.vbar(x='semester', top='avg', width=0.9, fill_alpha=0.5, color='color',source=source, legend='status')
 
-        # p2.line(x=["WS18/19", "SS19", "WS19/20", "SS20"], y=[4.5, 6, 3, 2], color="red", line_width=2)
+        p2.line(x=semesters, y=avg, color="red", line_width=2)
 
         # url = "https://trello.com/c/YcD1oQfR/36-bokeh-visualization-of-the-recommendation"
         # taptool = p2.select(type=TapTool)
