@@ -112,7 +112,7 @@ lecture_mapping = {
     'basic_programming_skills': 'Grundlegende_Programmiertechniken.pdf',
     'computer_graphics': 'computer_graphics.pdf',
     'databases': 'Datenbanken.pdf',
-    'data_structures_and_algorithms': 'data_structures_and_algorithms.pdf',
+    'data_structures_and_algorithms': 'DUA.pdf',
     'advanced_image_synthesis': 'advanced_image_synthesis.pdf',
     'information_mining': 'information_mining.pdf',
     'information_retrieval': 'Information_Retrieval.pdf',
