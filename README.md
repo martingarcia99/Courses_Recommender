@@ -22,9 +22,9 @@ We give the students the possibility to dive deeper into the lecture information
 * The Lecture Recommender Application was created as part of a school project for [Learning Analytics](https://www.uni-due.de/soco/teaching/courses/lecture-la-ws18.php)
 
 
-See the deployed application:
+See the deployed application on Heroku server:
 
-* [Heroku](https://laproject.herokuapp.com/)
+* [Courses](https://laproject.herokuapp.com/)
 
 <a name="headers1"/>
 
