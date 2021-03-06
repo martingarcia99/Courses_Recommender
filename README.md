@@ -183,7 +183,7 @@ python app.py
 * [NLP for Beginners: Cleaning & Preprocessing Text Data](https://towardsdatascience.com/nlp-for-beginners-cleaning-preprocessing-text-data-ae8e306bef0f)
 * [Text Cleaning Methods for Natural Language Processing](https://towardsdatascience.com/text-cleaning-methods-for-natural-language-processing-f2fc1796e8c7)
 #### Machine Learning
-wfiwifwn
+* [Tf-Idf vs Doc2Vec - Contrast and Compare](https://www.youtube.com/watch?v=iSkbq6Tjkj0&ab_channel=AliannaJ.Maren)
 <a name="headers6"/>
 
 # Members
