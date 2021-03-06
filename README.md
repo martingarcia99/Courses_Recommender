@@ -146,8 +146,8 @@ All Visualisation chart is built using:
 
 + <a href="https://bokeh.org/"> Bokeh </a>
 
- Example: 
- Bar chart for recommendation.
+ <b>Example 1</b>: 
+ createRecommendationGraph function: creates Bar chart for recommendations.
 
 ```ruby
     def createRecommendationGraph(self, recommendations):
@@ -190,7 +190,59 @@ All Visualisation chart is built using:
             print("No recommendations found")
             return "No recommendations found"
 ```
-<img src="static/images/dataset.PNG">
+<img src="static/images/Recommendations.JPG">
+
+<b>Example 2</b>: 
+ createAverageRatingGraph function: creates Bar chart for average rating distribution over the last 4 semesters. 
+
+```ruby
+    def createAverageRatingGraph(self, rating, semester):
+
+        semesters = ['ss19', 'ws19-20', 'ss20', 'ws20-21']
+        #avg. of course rating
+        avg = []
+        status = ["Is Present", "Is Not Yet Present","Is Not Yet Present","Is Not Yet Present"]
+        status1 = ["Is Not Yet Present","Is Present","Is Not Yet Present","Is Not Yet Present"]
+        status2 = ["Is Not Yet Present", "Is Not Yet Present","Is Not Yet Present","Is Not Yet Present"]
+
+        rating = rating.replace(",",".")
+        if semester == 'ss19':
+            avg = [float(rating),5,5,5]
+            source = ColumnDataSource(data=dict(semester=semesters, avg=avg, status=status, color=["green","blue","blue","blue"]))
+        elif semester == 'ws19-20':
+            avg = [5,float(rating), 5, 5]
+            source = ColumnDataSource(data=dict(semester=semesters, avg=avg, status=status1, color=["blue","green","blue","blue"]))
+        else:
+            avg = [5,5,5,5]
+            source = ColumnDataSource(data=dict(semester=semesters, avg=avg, status=status2, color=["blue","blue","blue","blue"]))
+        
+        # source = ColumnDataSource(data=dict(semester=semesters, avg=avg, color=["green","blue","blue","blue"]))
+
+        print(semesters)
+        print(avg)
+        TOOLTIPS = [("AverageRating", "@avg")]
+
+        p2 = figure(x_range=semesters, plot_height=250, tools="hover,pan,box_select,zoom_in,zoom_out,save,reset,tap", tooltips=TOOLTIPS)
+
+        p2.vbar(x='semester', top='avg', width=0.9, fill_alpha=0.5, color='color',source=source, legend='status')
+
+        p2.line(x=semesters, y=avg, color="red", line_width=2)
+
+        # url = "https://trello.com/c/YcD1oQfR/36-bokeh-visualization-of-the-recommendation"
+        # taptool = p2.select(type=TapTool)
+        # taptool.callback = OpenURL(url=url)
+        
+        p2.y_range.start = 0
+        p2.x_range.range_padding = 0.1
+        p2.xaxis.major_label_orientation = 1
+        p2.xgrid.grid_line_color = None
+        p2.legend.location = "top_left"
+        script2,div2 = components(p2)
+        cdn_js2 = CDN.js_files[0]
+        cdn_css2 = CDN.css_files
+        return script2, div2, cdn_css2, cdn_js2
+```
+<img src="static/images/avg_rating.JPG">
 
 <a name="headers5"/>
 
