@@ -12,7 +12,7 @@
 <img src="static/images/logo.png" width="100">
 <br>
 <br>
-<a href="https://www.youtube.com/watch?v=5uQ82EeYmuo">A Youtube video shows a demo</a>
+<a href="https://www.youtube.com/watch?v=3nJdvB94k4U&ab_channel=Philipp">A Youtube video shows a demo</a>
 
 
 # Courses
